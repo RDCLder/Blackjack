@@ -1,0 +1,27 @@
+#table {
+    background-color: green;
+    width: 800px;
+    border: solid sienna;
+    border-width: 20px;
+    border-radius: 20px;
+}
+
+#display {
+    position: relative;
+    left: 0px;
+    width: 76%;
+}
+
+.hand {
+    background-color: lightgreen;
+    height: 120px;
+    width: 600px;
+    border-radius: 5px;
+}
+
+img {
+    height:85%;
+    border-radius: 5px;
+    margin-top: 9px;
+    margin-left: 10px;
+}
