@@ -11,44 +11,40 @@
     <link rel="stylesheet" href = "styles/blackjack.css">
   </head>
   <body>
-    
-    <div class="container" style = "margin-top: 100px;">
       
-      <div id = "table" style = "margin: auto;">
+      <div id = "table" style = "margin-top: 100px;">
 
-      <div id = "message"></div>
-
-      <div class="row" style = "height: 50px;"></div>
-
-      <div class="row justify-content-md-center">
-        <label id = "display"><h4>Dealer: 0</h4></label>
-        <label id = "dealer-points" class = "points"></label>
-      </div>
-
-      <div class="row justify-content-md-center align-items-md-center" style = "margin-bottom: 20px;">
-        <div id = "dealer-hand" class = "hand"></div>
-      </div>
-
-      <div class="row justify-content-md-center">
-        <label id = "display"><h4>Player: 0</h4></label>
-        <label id = "player-points" class = "points"></label>
-      </div>
-
-      <div class="row justify-content-md-center align-items-md-center" style = "margin-bottom: 20px;">
-        <div id = "player-hand" class = "hand"></div>
-      </div>
-
-      <div class="row justify-content-md-center align-items-md-center" style = "margin: 30px;">
-        <div class = "buttons">
-          <button id = "deal-button">Deal</button>
-          <button id = "hit-button">Hit</button>
-          <button id = "stand-button">Stand</button>
+        <div class="row justify-content-md-center align-items-md-center" style = "height: 60px;">
+          <div id = "message"></div>
         </div>
-      </div>
+
+        <div class="row justify-content-md-center">
+          <label id = "display"><h4 id = "dealerPoints">Dealer: </h4></label>
+          <label id = "dealer-points" class = "points"></label>
+        </div>
+
+        <div class="row justify-content-md-center align-items-md-center" style = "margin-bottom: 20px;">
+          <div id = "dealer-hand" class = "hand"></div>
+        </div>
+
+        <div class="row justify-content-md-center">
+          <label id = "display"><h4 id = "playerPoints">Player: </h4></label>
+          <label id = "player-points" class = "points"></label>
+        </div>
+
+        <div class="row justify-content-md-center align-items-md-center" style = "margin-bottom: 20px;">
+          <div id = "player-hand" class = "hand"></div>
+        </div>
+
+        <div class="row justify-content-md-center align-items-md-center" style = "margin: 30px;">
+          <div class = "buttons">
+            <button id = "deal-button">Deal</button>
+            <button id = "hit-button">Hit</button>
+            <button id = "stand-button">Stand</button>
+          </div>
+        </div>
 
       </div>
-
-    </div>
 
     <!-- Optional JavaScript -->
     <script src = "blackjack.js"></script>
