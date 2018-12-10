@@ -350,12 +350,15 @@ var deck6 = [
 
 var allDecks = [deck1, deck2, deck3, deck4, deck5, deck6];
 
-var message = document.getElementById("message");
+var message1 = document.getElementById("message1");
+var message2 = document.getElementById("message2");
 var dealerHand = document.getElementById("dealer-hand");
 var playerHand = document.getElementById("player-hand");
 
 var dealerPoints = document.getElementById("dealerPoints");
 var playerPoints = document.getElementById("playerPoints");
+var dealerAces = 0;
+var playerAces = 0;
 var dealerValue = 0;
 var playerValue = 0;
 
@@ -376,27 +379,32 @@ function checkValue () {
     if (playerValue <= 21 && dealerValue <= 21) {
         if (finalCheck) {
             if (playerValue > dealerValue) {
-                message.textContent = "You win! Click Deal for new game."
+                message1.textContent = "You win!"
+                message2.textContent = "Click Deal for new game."
                 playerWinCount ++;
                 playerWins.textContent = "Wins: " + playerWinCount;
             }
             else if (playerValue < dealerValue) {
-                message.textContent = "You lose! Click Deal for new game."
+                message1.textContent = "You lose!"
+                message2.textContent = "Click Deal for new game."
                 dealerWinCount ++;
                 dealerWins.textContent = "Wins: " + dealerWinCount;
             }
             else {
-                message.textContent = "Tie"
+                message1.textContent = "Tie!"
+                message2.textContent = "Click Deal for new game."
             }
         }
     }
     else if (playerValue > 21) {
-        message.textContent = "You bust.  You lose!"
+        message1.textContent = "You bust! You lose!"
+        message2.textContent = "Click Deal for new game."
         dealerWinCount ++;
         dealerWins.textContent = "Wins: " + dealerWinCount;
     }
     else if (dealerValue > 21) {
-        message.textContent = "Dealer busts.  You win!"
+        message1.textContent = "Dealer busts! You win!"
+        message2.textContent = "Click Deal for new game."
         playerWinCount ++;
         playerWins.textContent = "Wins: " + playerWinCount;
     }
@@ -405,27 +413,39 @@ function checkValue () {
 function addCard (n, target) {
 
     if (target == "dealer") {
-        // var dealerHand = document.getElementById("dealer-hand");
         for (var i = 0; i < n; i ++) {
             let card = document.createElement("img");
             let deck = allDecks[Math.floor(Math.random() * 6)];
             let randomIndex = Math.floor(Math.random() * deck.length);
+            if (deck[randomIndex].value.length == 2) {
+                dealerAces ++;
+            }
             card.src = deck[randomIndex].path;
             dealerHand.appendChild(card);
             dealerValue += deck[randomIndex].value[0];
+            while (dealerValue > 21 && dealerAces > 0) {
+                dealerValue -= 10;
+                dealerAces --;
+            }
             dealerPoints.textContent = "Dealer: " + dealerValue;
             deck.splice(randomIndex, 1);
         }
     }
     else {
-        // var playerHand = document.getElementById("player-hand");
         for (var i = 0; i < n; i ++) {
             let card = document.createElement("img");
             let deck = allDecks[Math.floor(Math.random() * 6)];
             let randomIndex = Math.floor(Math.random() * deck.length);
+            if (deck[randomIndex].value.length == 2) {
+                playerAces ++;
+            }
             card.src = deck[randomIndex].path;
             playerHand.appendChild(card);
             playerValue += deck[randomIndex].value[0];
+            while (playerValue > 21 && playerAces > 0) {
+                playerValue -= 10;
+                playerAces --;
+            }
             playerPoints.textContent = "Player: " + playerValue;
             deck.splice(randomIndex, 1);
         }
@@ -437,28 +457,20 @@ function addCard (n, target) {
 // Event Definitions
 
 document.getElementById("deal-button").addEventListener("click", function() {
-    // if (newGame == true) {
-    //     newGame = false;
-    //     let card = document.createElement("img");
-    //     card.id = "hole";
-    //     card.src = "images/Gray_back.jpg";
-    //     dealerHand.appendChild(card);
-    //     addCard(1, "dealer");
-    //     addCard(2, "player");
-    //     checkValue()
-    // }
-    // else {
-
-    // Remove everything from the table and reset everything to pre-game state.
+    
+    // Reset everything to pre-game state
     while (dealerHand.lastChild) {
         dealerHand.removeChild(dealerHand.lastChild);
     }
     while (playerHand.lastChild) {
         playerHand.removeChild(playerHand.lastChild);
     }
-    message.textContent = "";
+    message1.textContent = "";
+    message2.textContent = "";
+    playerAces = 0;
     dealerValue = 0;
     dealerPoints.textContent = "Dealer: "
+    dealerAces = 0;
     playerValue = 0;
     playerPoints.textContent = "Player: "
     finalCheck = false;
