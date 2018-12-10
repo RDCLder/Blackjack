@@ -362,13 +362,14 @@ var playerAces = 0;
 var dealerValue = 0;
 var playerValue = 0;
 
-var dealerWins = document.getElementById("dealerWins");
-var playerWins = document.getElementById("playerWins");
-var dealerWinCount = 0;
-var playerWinCount = 0;
+var bet = 10;
+var poolText = document.getElementById("poolText");
+var pool = 500;
 
 var finalCheck = false;
 var newGame = true;
+var playerName = prompt("Please enter your name:", "Player Name");
+playerPoints.textContent = playerName + ": ";
 
 // ------------------------------------------------------------------------------------------
 
@@ -379,34 +380,46 @@ function checkValue () {
     if (playerValue <= 21 && dealerValue <= 21) {
         if (finalCheck) {
             if (playerValue > dealerValue) {
-                message1.textContent = "You win!"
-                message2.textContent = "Click Deal for new game."
-                playerWinCount ++;
-                playerWins.textContent = "Wins: " + playerWinCount;
+                message1.textContent =  playerName + " wins!";
+                message2.textContent = "Click Deal for new game.";
+                pool = Number(pool) + 2 * Number(bet);
+                poolText.textContent = "Pool: " + pool;
             }
             else if (playerValue < dealerValue) {
-                message1.textContent = "You lose!"
-                message2.textContent = "Click Deal for new game."
-                dealerWinCount ++;
-                dealerWins.textContent = "Wins: " + dealerWinCount;
+                message1.textContent = "Dealer wins!";
+                message2.textContent = "Click Deal for new game.";
+                // if (Number(pool) - Number(bet) < 0) {
+                //     pool = 0;
+                // }
+                // else {
+                //     pool = Number(pool) - Number(bet);
+                // }
+                // poolText.textContent = "Pool: " + pool;
             }
             else {
-                message1.textContent = "Tie!"
-                message2.textContent = "Click Deal for new game."
+                message1.textContent = "Tie!";
+                message2.textContent = "Click Deal for new game.";
+                pool = Number(pool) + Number(bet);
+                poolText.textContent = "Pool: " + pool;
             }
         }
     }
     else if (playerValue > 21) {
-        message1.textContent = "You bust! You lose!"
-        message2.textContent = "Click Deal for new game."
-        dealerWinCount ++;
-        dealerWins.textContent = "Wins: " + dealerWinCount;
+        message1.textContent = playerName + " busts! Dealer wins!";
+        message2.textContent = "Click Deal for new game.";
+        // if (Number(pool) - Number(bet) < 0) {
+        //     pool = 0;
+        // }
+        // else {
+        //     pool = Number(pool) - Number(bet);
+        // }
+        // poolText.textContent = "Pool: " + pool;
     }
     else if (dealerValue > 21) {
-        message1.textContent = "Dealer busts! You win!"
+        message1.textContent = "Dealer busts! " + playerName + " wins!"
         message2.textContent = "Click Deal for new game."
-        playerWinCount ++;
-        playerWins.textContent = "Wins: " + playerWinCount;
+        pool = Number(pool) + 2 * Number(bet);
+        poolText.textContent = "Pool: " + pool;
     }
 }
 
@@ -446,7 +459,7 @@ function addCard (n, target) {
                 playerValue -= 10;
                 playerAces --;
             }
-            playerPoints.textContent = "Player: " + playerValue;
+            playerPoints.textContent = playerName + ": " + playerValue;
             deck.splice(randomIndex, 1);
         }
     }
@@ -472,10 +485,20 @@ document.getElementById("deal-button").addEventListener("click", function() {
     dealerPoints.textContent = "Dealer: "
     dealerAces = 0;
     playerValue = 0;
-    playerPoints.textContent = "Player: "
+    playerPoints.textContent = playerName + ": "
     finalCheck = false;
 
     // Initiate the game
+    bet = prompt("Enter the bet:", "10");
+    if (Number(pool) - Number(bet) < 0) {
+        pool = 0;
+    }
+    else {
+        pool = Number(pool) - Number(bet);
+    }
+    poolText.textContent = "Pool: " + pool;
+    message1.textContent = "Bet: " + bet;
+
     let card = document.createElement("img");
     card.id = "hole";
     card.src = "images/Gray_back.jpg";

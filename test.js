@@ -120,3 +120,11 @@ var deck2 = [
 // console.log(deck[0].value.length)
 // var card = deck[randomIndex].value[0];
 // deck.splice(randomIndex, 1);
+
+var pool = "500";
+var bet = "50";
+pool = Number(pool) + Number(bet);
+
+console.log(
+    pool
+);
