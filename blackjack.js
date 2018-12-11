@@ -71,6 +71,9 @@ var numDecks = prompt("Enter the number of decks to play with (2-8):", 2);
 if (numDecks < 2) {
     numDecks = 2;
 }
+else if (numDecks > 8) {
+    numDecks = 8;
+}
 var allDecks = initiateDecks(numDecks);
 var discardPile = 0;
 
