@@ -69,4 +69,17 @@ function initiateDecks (n) {
 // var numberDecks = prompt("Enter the number of decks to play with:", 1);
 var numberDecks = 2;
 var allDecks = initiateDecks(numberDecks);
-console.log(allDecks);
+// console.log(allDecks);
+
+// newImg = {
+//     src: "",
+//     alt: ""
+// }
+
+// var object = {
+//     item1: "value1",
+//     item2: "value2" 
+// };
+
+// object.item1 = "1";
+// console.log(object.item1);
