@@ -12,9 +12,7 @@ Blackjack is a popular card game where the player tries to beat the dealer in on
 ## Features
 
 - Hit, stand, or deal a new hand once a round is over
-
 - Bet any amount (that you have)
-
 - Decks get shuffled once they're halfway through
 
 ## Technologies
