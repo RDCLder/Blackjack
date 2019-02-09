@@ -1,4 +1,4 @@
-# [Blackjack] (https://rdclder.github.io/Blackjack/)
+# [Blackjack](https://rdclder.github.io/Blackjack/)
 
 ## General
 
